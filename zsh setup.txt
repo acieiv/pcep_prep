@@ -1,0 +1,119 @@
+🐚 Zsh Setup Cheat Sheet
+✅ 1. Install Zsh (if not already installed)
+WSL usually has it, but just in case:
+
+bash
+Copy
+Edit
+sudo apt update && sudo apt install zsh
+✅ 2. Set Zsh as your default shell
+bash
+Copy
+Edit
+chsh -s $(which zsh)
+🚨 If this doesn’t stick in WSL, use a shell hook or set it in .bashrc like:
+
+bash
+Copy
+Edit
+exec zsh
+✅ 3. Install Oh My Zsh
+bash
+Copy
+Edit
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+✅ 4. Enable useful plugins in .zshrc
+Open your config:
+
+bash
+Copy
+Edit
+nano ~/.zshrc
+Find the line:
+
+zsh
+Copy
+Edit
+plugins=(git)
+Change it to:
+
+zsh
+Copy
+Edit
+plugins=(git conda python zsh-autosuggestions zsh-syntax-highlighting)
+✅ 5. Install zsh-autosuggestions (gray text hints)
+bash
+Copy
+Edit
+git clone https://github.com/zsh-users/zsh-autosuggestions \
+  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+✅ 6. Install zsh-syntax-highlighting (colorful command feedback)
+bash
+Copy
+Edit
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+Make sure this plugin is last in the list in .zshrc:
+
+zsh
+Copy
+Edit
+plugins=(... zsh-syntax-highlighting)
+✅ 7. Install Powerlevel10k
+bash
+Copy
+Edit
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
+  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+Then set in .zshrc:
+
+zsh
+Copy
+Edit
+ZSH_THEME="powerlevel10k/powerlevel10k"
+✅ 8. Reload everything
+bash
+Copy
+Edit
+source ~/.zshrc
+Or just open a new terminal window to see Powerlevel10k kick in.
+
+✅ 9. (Optional) Rerun P10k wizard anytime
+bash
+Copy
+Edit
+p10k configure
+💡 Optional tweaks
+Add custom aliases at the bottom of .zshrc:
+
+zsh
+Copy
+Edit
+alias act="conda activate"
+alias deact="conda deactivate"
+alias py="python"
+alias gs="git status"
+
+✅ Nerd Font: One-liner install script (for WSL/Linux/macOS):
+bash
+Copy
+Edit
+mkdir -p ~/.local/share/fonts && \
+cd ~/.local/share/fonts && \
+curl -fLo "MesloLGS NF Regular.ttf" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf && \
+curl -fLo "MesloLGS NF Bold.ttf" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf && \
+curl -fLo "MesloLGS NF Italic.ttf" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf && \
+curl -fLo "MesloLGS NF Bold Italic.ttf" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf && \
+fc-cache -fv
+
+💡 On Windows (for VS Code or Windows Terminal):
+Manually install the fonts by right-clicking each .ttf and selecting:
+
+Install for all users
+
+Then in VS Code, update:
+
+json
+Copy
+Edit
+"terminal.integrated.fontFamily": "MesloLGS NF"

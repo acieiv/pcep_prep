@@ -1,0 +1,80 @@
+🧱 Conda Setup Cheat Sheet (pcep_prep)
+✅ 1. Create a Conda Environment
+bash
+Copy
+Edit
+conda create --name pcep_prep python=3.10
+✅ 2. Activate the Environment
+bash
+Copy
+Edit
+conda activate pcep_prep
+✅ 3. (Optional) Deactivate
+bash
+Copy
+Edit
+conda deactivate
+✅ 4. Install Packages into the Env
+bash
+Copy
+Edit
+conda install numpy matplotlib jupyter
+You can add more packages as needed:
+
+bash
+Copy
+Edit
+conda install pandas scipy seaborn
+Or use pip inside the environment:
+
+bash
+Copy
+Edit
+pip install rich
+✅ 5. List All Environments
+bash
+Copy
+Edit
+conda env list
+Or:
+
+bash
+Copy
+Edit
+conda info --envs
+✅ 6. Remove an Environment (carefully!)
+bash
+Copy
+Edit
+conda remove --name pcep_prep --all
+✅ 7. Export Environment to YAML (for sharing)
+bash
+Copy
+Edit
+conda env export --name pcep_prep > pcep_prep.yml
+To recreate it on another machine:
+
+bash
+Copy
+Edit
+conda env create -f pcep_prep.yml
+🧠 Bonus: Auto-activate env in a project folder
+If you want Conda to auto-activate when you cd into your project, create a .conda config file:
+
+bash
+Copy
+Edit
+conda config --set auto_activate_base false
+Then inside ~/projects/pcep_prep, create:
+
+bash
+Copy
+Edit
+echo "conda activate pcep_prep" > .envrc
+Then install direnv (brew install direnv or sudo apt install direnv) and add this to your .zshrc:
+
+bash
+Copy
+Edit
+eval "$(direnv hook zsh)"
+Let me know if you want that auto-activation wired in or just keep it manual!
