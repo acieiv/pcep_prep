@@ -1,0 +1,27 @@
+## GitHub Cheatsheet
+
+## 🧠 Initial Setup (One-Time)
+Set your Git identity globally (if not already set):
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
+
+
+🚀 One-Time GitHub Setup (per new project)
+# Step 1: Create a repo on GitHub (via web or GitHub CLI)
+👉 https://github.com/new
+(⚠️ Leave README, .gitignore, and license unchecked to avoid conflicts)
+
+# Step 2: In your local VS Code terminal
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+git push -u origin main
+
+👨‍💻 Daily Workflow
+git pull origin main          # Pull latest changes
+git add .                     # Stage changes
+git commit -m "Describe changes"
+git push origin main          # Push to GitHub
