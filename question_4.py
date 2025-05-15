@@ -3,7 +3,7 @@
 # Unpack four 1-bit sensors A-D and report which fired.
 
 
-# Feeback: not sure of bitwise at all 
+# Feedback: not sure of bitwise at all 
 # an area that needs to be studied more
 
 packed = 0b1101  # Sample packed flag (binary 1101, decimal 13)

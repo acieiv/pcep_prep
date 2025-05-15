@@ -6,8 +6,10 @@ Set your Git identity globally (if not already set):
 git config --global user.name "Your Name"
 git config --global user.email "your@email.com"
 
+—-------------------------------------------------------------
 
 🚀 One-Time GitHub Setup (per new project)
+
 # Step 1: Create a repo on GitHub (via web or GitHub CLI)
 👉 https://github.com/new
 (⚠️ Leave README, .gitignore, and license unchecked to avoid conflicts)
@@ -25,3 +27,68 @@ git pull origin main          # Pull latest changes
 git add .                     # Stage changes
 git commit -m "Describe changes"
 git push origin main          # Push to GitHub
+
+—-------------------------------------------------------------
+🔐 SSH Setup (Optional but Recommended)
+
+✅ Option 1: Default SSH Key (simpler, no config required)
+
+Run:
+ssh-keygen -t ed25519 -C "your@email.com"
+🔒 When prompted, press Enter to save it to the default path:
+~/.ssh/id_ed25519
+
+Add the public key to GitHub:
+cat ~/.ssh/id_ed25519.pub
+👉 Copy the output and paste it into https://github.com/settings/keys → New SSH key
+
+Update your project to use SSH:
+git remote set-url origin git@github.com:YOUR_USERNAME/YOUR_REPO_NAME.git
+
+Test connection:
+ssh -T git@github.com
+✅ You should see: "Hi your_username! You've successfully authenticated..."
+
+—-------------------------
+
+🧠 Option 2: Custom Key Name (requires config)
+
+Use this if you want to name your key something like githubkey.
+
+Step 1: Generate the key
+ssh-keygen -t ed25519 -C "your@email.com"
+📍 When prompted for a path, enter: ~/.ssh/githubkey
+
+Step 2: Add the public key to GitHub
+cat ~/.ssh/githubkey.pub
+👉 Paste the output into https://github.com/settings/keys → New SSH key
+
+Step 3: Configure Git to use the custom key
+Run: nano ~/.ssh/config
+Paste the following:
+
+Host github.com
+HostName github.com
+User git
+IdentityFile ~/.ssh/githubkey
+IdentitiesOnly yes
+
+Save and exit the file. Then test:
+ssh -T git@github.com
+✅ You should see: "Hi your_username! You've successfully authenticated..."
+
+—-------------------------
+
+🛡️ Safety Tips
+
+🔥 Never save SSH keys inside your Git project folder
+✅ Always store them in ~/.ssh/ or another secure location
+🚫 Never commit .pub or private key files to your repo
+
+Add this to your .gitignore to prevent accidents:
+
+*.pub
+id_ed25519
+id_rsa
+githubkey
+githubkey.pub
