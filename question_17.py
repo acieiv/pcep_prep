@@ -8,6 +8,7 @@
 
 # Feedback: Not sure where to start so had cline provide the solution.
 # will continue to understand it deeper and work through more examples
+# makes sense once worked through and explained
 
 def recursive_sum(n):
   # Base Case: If n is 1, the sum is 1. This stops the recursion.
